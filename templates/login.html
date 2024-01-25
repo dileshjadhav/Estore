@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/asset/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Estore | Login Page</title>
+
+    <!-- Favicons -->
+    <link href="static/asset/images/g1.png" rel="icon">
+
+    <style>
+        .col-md-12 {
+            display: inline-block;
+            margin-top: 5%;
+        }
+
+        .col-md-12 .hbtn {
+            text-decoration: none;
+            padding: 5px;
+            border: none;
+            border-radius: 9px;
+            font-weight: bolder;
+            /* background-color: rgb(67, 88, 8); */
+            background-color: #192821;
+            color: whitesmoke;
+            box-shadow: 2px 2px 8px rgb(68, 109, 71);
+
+        }
+
+        .col-md-12 .hbtn :hover {
+            border: 1px solid rgb(67, 88, 8);
+            background-color: none;
+            color: rgb(67, 88, 8);
+        }
+        .Header {
+            padding-left: 20px;
+        }
+        .bagg1{
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.37);
+           background-color: aliceblue;
+           border-radius: 8px;
+        }
+        body{
+            background-image: url(https://images.pexels.com/photos/2067506/pexels-photo-2067506.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=5);
+           
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .loginbtn{
+            background-color: #192821;
+        }
+        .logintext{
+            color: #192821;
+        }
+       
+       
+    </style>
+
+
+</head>
+
+<body>
+
+ <div class="container-fluid ">
+    <div class="Header col-md-12 pl-3">
+
+        <a href="/home" style="text-decoration: none ;"><span class="hbtn">HOME</span></a>
+
+    </div>
+
+
+    <div class="row justify-content-center" ><!--row start-->
+       
+    
+        <div class="col-md-4 ">
+            <div class="mt-5 p-4 mx-auto bagg1">
+                <h2 class="text-center  logintext">Login</h2>
+
+
+
+                 <!---------------------------------->
+                 {% if errmsg %}
+
+                 <div class="alert alert-danger">
+                     {{errmsg}}
+                     <!--this for if form is emty << {{errmsg}}<< this is dictionary we made it in views-->
+                 </div>
+
+
+                 {% endif %}
+                 
+                 <!----------------------------------------->
+
+
+
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label"><strong>User Name</strong></label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="uname" placeholder="enter username ">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pass-1" class="form-label"><strong>Password</strong></label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="pass-1" name="upass" placeholder="enter password">
+                            <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success loginbtn">login</button>
+                        Did you register? <a href="/register" style="text-decoration: none;">Register</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!--row end-->
+
+</div>
+    
+
+<script>
+    const passwordInput = document.getElementById('pass-1');
+    const togglePasswordButton = document.getElementById('toggle-password');
+    
+    togglePasswordButton.addEventListener('click', function () {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            togglePasswordButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        } else {
+            passwordInput.type = 'password';
+            togglePasswordButton.innerHTML = '<i class="fas fa-eye"></i>';
+        }
+    });
+</script>
+
+    <script src="static/asset/js/bootstrap.min.js"></script>
+</body>
+
+</html>

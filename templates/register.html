@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/asset/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>Estore | Login Page</title>
+
+    <!-- Favicons -->
+    <link href="static/asset/images/g1.png" rel="icon">
+
+    <style>
+        .col-md-12 {
+            display: inline-block;
+            margin-top: 5%;
+        }
+
+        .col-md-12 .hbtn {
+            text-decoration: none;
+            padding: 5px;
+            border: none;
+            border-radius: 9px;
+            font-weight: bolder;
+            background-color: rgb(151, 10, 10);
+            color: whitesmoke;
+            box-shadow: 2px 2px 8px rgb(61, 41, 41);
+
+        }
+
+        .col-md-12 .hbtn :hover {
+            border: 1px solid rgb(67, 88, 8);
+            background-color: none;
+            color: rgb(67, 88, 8);
+        }
+
+        .Header {
+            padding-left: 20px;
+        }
+
+        .pinfo {
+            display: inline-block;
+            position: relative;
+            margin-top: -1px;
+        }
+
+
+
+        .registerbox {
+            background-color: aliceblue;
+            border-radius: 3px;
+        }
+
+        /* body {
+            background-image:url(https://images.pexels.com/photos/870036/pexels-photo-870036.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1080);
+            
+            
+            
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.37);
+            background-size: cover;
+            background-repeat: no-repeat;
+        } */
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="Header col-md-12 pl-3">
+            <a href="/home" style="text-decoration: none;"><span class="hbtn">HOME</span></a>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="shadow mt-5 p-4 mx-auto registerbox">
+                    <h2 class="text-center text-danger">Register</h2>
+
+                    <!-- Display validation errors -->
+                    {% if errmsg %}
+                    <div class="alert alert-danger">
+                        {{ errmsg }}
+                    </div>
+                    {% endif %}
+
+                    {% if success %}
+                    <div class="alert alert-success">
+                        {{success }}
+                    </div>
+                    {% endif %}
+
+                    <form method="post" action="" id="register-form">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="firstname "><strong>First Name</strong></label>
+                            <input type="text" class="form-control mt-2" id="firstname" placeholder="Enter First Name " name="firstname">
+                            <!--do not give required text is here if it is already given cut thsi ok then only errorkey mesg will be apply if its is empty -->
+                          </div>
+                          <div class="form-group mb-3">
+                            <label for="LastName"><strong>Last Name</strong></label>
+                            <input type="text" class="form-control mt-2" id="LastName" placeholder="Enter Last Name" name="LastName">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="email">Email_id</label>
+                            <input type="email" class="form-control" id="email" name="email">
+                          </div>
+                  
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label"><strong>User Name</strong></label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="uname"
+                                placeholder="type username: name@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pass-1" class="form-label"><strong>Password</strong></label>
+
+
+                            <button type="button" id="info-btn" class="btn btn-light btn-sm pinfo"
+                                style="margin-left: 10px;">
+                                <i class="bi bi-info-circle-fill"></i>
+                            </button>
+
+
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="pass-1" name="upass"
+                                    placeholder="enter password">
+                                <button type="button" id="password-toggle" class="btn btn-dark btn-sm pinfo">
+                                    <i class="bi bi-eye-slash"></i>
+                                </button>
+                            </div>
+
+                            <p id="password-error" class="password-error" style="color: red;"></p>
+                        </div>
+
+
+
+                        <div id="password-criteria" class="alert alert-info" style="display: none;">
+                            Password must contain at least one capital letter, one number, one symbol, and be at least 8
+                            characters long.
+                        </div>
+
+                        <!-- Display password format error -->
+                        {% if perrmsg %}
+                        <div class="alert alert-danger">
+                            {{ perrmsg }}
+                        </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label for="pass-1" class="form-label"><strong>Confirm Password</strong></label>
+
+
+
+
+
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="pass-confirm" name="ucpass"
+                                    placeholder="type same password">
+                                <button type="button" id="confirm-password-toggle" style="border: 0.5px;"
+                                    class="btn btn-dark btn-sm pinfo">
+                                    <i class="bi bi-eye-slash "></i>
+                                </button>
+                            </div>
+
+
+
+                            <p id="password-confirm-error" class="password-error" style="color: red;"></p>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-danger">Register</button>
+                            Already User? <a href="/login" style="text-decoration: none;">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+    <script>
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const infoButton = document.getElementById("info-btn");
+            const criteriaDiv = document.getElementById("password-criteria");
+
+            infoButton.addEventListener("click", function () {
+                if (criteriaDiv.style.display === "none") {
+                    criteriaDiv.style.display = "block";
+                } else {
+                    criteriaDiv.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const passwordInput = document.getElementById("pass-1");
+            const passwordToggle = document.getElementById("password-toggle");
+            const confirmPasswordInput = document.getElementById("pass-confirm");
+            const confirmPasswordToggle = document.getElementById("confirm-password-toggle");
+
+            passwordToggle.addEventListener("click", function () {
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    passwordToggle.innerHTML = '<i class="bi bi-eye"></i>';
+                } else {
+                    passwordInput.type = "password";
+                    passwordToggle.innerHTML = '<i class="bi bi-eye-slash"></i>';
+                }
+            });
+
+            confirmPasswordToggle.addEventListener("click", function () {
+                if (confirmPasswordInput.type === "password") {
+                    confirmPasswordInput.type = "text";
+                    confirmPasswordToggle.innerHTML = '<i class="bi bi-eye"></i>';
+                } else {
+                    confirmPasswordInput.type = "password";
+                    confirmPasswordToggle.innerHTML = '<i class="bi bi-eye-slash"></i>';
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="static/asset/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,242 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+    <link rel="stylesheet" href="{% static 'asset/css/bootstrap.min.css' %}"><!-- Linked to the defined CSS file -->
+    <link rel="stylesheet" href="{% static 'asset/css/style.css' %}"><!-- Linked to the user-defined CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <title>Grocery | Home</title><!-- Title for the browser tab -->
+
+    <link href="{% static 'asset/images/g1.png' %}" rel="icon"> <!-- Icon displayed in the browser tab -->
+
+    <style>
+        .userloginname {
+            display: inline-block;
+
+            padding-left: 9px;
+            margin-top: 16px;
+            font-weight: 600;
+        }
+
+        /* Adjust styles for screens with a max width of 768px (small devices) */
+        @media (max-width: 768px) {
+            .userloginname {
+                margin-top: 10px;
+                /* Adjust margin for smaller screens */
+            }
+        }
+
+        .bi-person-circle {
+
+            margin-left: 6px;
+
+        }
+
+        .searchbtn {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .nav-item {
+            margin-top: 6px;
+        }
+
+        .Cartbtn {
+            padding-top: 6px;
+            padding-bottom: 6px;
+            border: 1px solid black;
+            background-color: transparent;
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid"><!-- Full-width container -->
+        <!-- Header -->
+
+        <div class="row mt-3 "><!-- Row navigation bar-->
+
+            <div class="col-md-12" style="width: 100%;">
+
+                <nav class="navbar navbar-expand-lg custom-navbar">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/home">
+                            <img class="img2" src="{% static 'asset/images/g2.png' %}" alt="Gstore Logo"> <span
+                                id="logo">store</span>
+                        </a><!-- Brand/logo for the website -->
+                        <!--  <a class="navbar-brand" href="#">Navbar</a>  <---Additional navbar brand -->
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page"
+                                        href="/home">Home</a><!-- Navigation link for the active/current page -->
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="/about">About</a><!-- Navigation link to the about page -->
+                                </li>
+
+                                <!-- Dropdown menu example
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                             
+                              
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="/viewcart">Cart</a>
+                                </li>
+
+                            <button class="btn btn-outline-dark" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        </button>
+
+                        <button class="btn btn-outline-dark" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                           <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="/viewcart">Cart</a>
+                                </li>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        </button>
+                            -->
+
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="/contact">Contact</a><!-- Navigation link to the contact page -->
+                                </li>
+
+
+
+
+
+                                {% if user.is_authenticated %}
+                                <!--if user.is_authenticated means >> user start their session means user login there account and enter into their accout for shopping-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="/logout">LogOut</a><!-- Navigation link to the logout page -->
+                                </li>
+
+
+
+
+                                {% else %}
+
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="/login">Login</a><!-- Navigation link to the login page -->
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="/register">Register</a><!-- Navigation link to the register page -->
+                                </li>
+
+
+                                {% endif %}
+
+
+                                {% if user.is_authenticated %}
+
+
+                                <button class="Cartbtn d-flex" type="submit">
+                                    <i class="bi-cart-fill me-1 mt-2"></i>
+                                    <li class="nav-itemm">
+                                        <a class="nav-link" href="/viewcart">Cart</a>
+                                    </li>
+
+                                </button>
+
+
+
+                                {% endif %}
+
+
+
+
+
+
+
+
+
+                            </ul>
+                            <form class="d-flex" action="{% url 'search_grocery' %}" method="get" role="search">
+                                <div class="input-group"> <!-- Use an input group to group input and button -->
+                                    <input
+                                        class="form-control me-2 {% if messages and 'error' in messages.tags %}is-invalid{% endif %}"
+                                        type="search" name="q" placeholder="Search" aria-label="Search" required>
+                                    <button class="btn btn-outline-success searchbtn" type="submit">Search</button>
+                                    {% if messages %}
+                                    <div class="invalid-feedback">
+                                        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+                                            </li>
+                                            {{ message }}
+
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </form>
+
+
+                            {% if user.is_authenticated %}
+                            <i class="bi bi-person-circle"></i>
+                            <p class="userloginname">{{ user.first_name }} {{ user.last_name }}</p>
+                            {% endif %}
+
+
+
+
+
+                        </div>
+                    </div>
+                </nav>
+
+            </div><!-- Navigation bar end -->
+
+
+
+
+
+        </div><!-- Navigation bar row end -->
+
+
+
+        <!---------------------------------Header ends------------------------------>
