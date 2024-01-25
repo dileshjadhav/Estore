@@ -1,5 +1,7 @@
 # Estore Application
+
 Online Grocery Store
+
 Our online grocery store project brings together the strengths of different technologies to create a great shopping experience. 
 We use HTML, CSS, JavaScript, and Bootstrap for the parts you see on the website which is known as front end technologies and Python, Django, and MySQL behind the scenes which is known as backend
 technologies . 
